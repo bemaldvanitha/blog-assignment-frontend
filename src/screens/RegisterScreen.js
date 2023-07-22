@@ -8,12 +8,14 @@ import CustomInput from "../components/CustomInput";
 import '../styles/RegisterScreen.css';
 import axios from "axios";
 import Navbar from "../components/Navbar";
+import CustomAlert from "../components/CustomAlert";
 
 const RegisterScreen = () => {
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [profilePicture, setProfilePicture] = useState([]);
+    const [validAlert, setValidAlert] = useState(false);
 
     const navigate = useNavigate();
 
@@ -52,6 +54,7 @@ const RegisterScreen = () => {
     };
 
     const handleSubmit = async () => {
+        setValidAlert(false);
         const formData = new FormData();
         formData.append('username', userName);
         formData.append('email', email);
@@ -60,17 +63,25 @@ const RegisterScreen = () => {
             formData.append('profilePic', profilePicture[0].originFileObj);
         }
 
-        try {
-            const response = await axios.post('http://localhost:5000/api/user/sign-up', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isEmailValid = emailRegex.test(email);
 
-            const token = response.data.token;
-            localStorage.setItem('jwtToken', token);
-            navigate('/');
+        try {
+            if(isEmailValid && password.length >= 6 && userName.length >= 3 && profilePicture[0] !== undefined){
+                const response = await axios.post('http://localhost:5000/api/user/sign-up', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                });
+
+                const token = response.data.token;
+                localStorage.setItem('jwtToken', token);
+                navigate('/');
+            }else{
+                setValidAlert(true);
+            }
         } catch (error) {
+            setValidAlert(true);
             console.error(error);
         }
     }
@@ -79,6 +90,13 @@ const RegisterScreen = () => {
         <div>
             <Navbar/>
             <div className="register-form-container">
+                {validAlert && (
+                    <CustomAlert
+                        message={'Authentication error'}
+                        description={"email should valid and password should have minimum 6 chars and user " +
+                            "name should have minimum 3 chars and have profile picture"}
+                    />
+                )}
                 <p className="register-form-header">Register</p>
                 <CustomInput title={'user name'} id={'username'} inputValue={userName} setValue={handleUsernameChange}/>
                 <CustomInput title={'email'} id={'email'} inputValue={email} setValue={handleEmailChange}/>
