@@ -1,0 +1,24 @@
+.form-container {
+    max-width: 400px;
+    margin: 25px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+
+.form-button {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #6B3FA0;
+    border-color: #6B3FA0;
+    color: #fff;
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}

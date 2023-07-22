@@ -1,24 +1,26 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
+
+import AddBlogScreen from "./screens/AddBlogScreen";
+import AllBlogsScreen from "./screens/AllBlogsScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import SelectedBlogScreen from "./screens/SelectedBlogScreen";
+import UserScreen from "./screens/UserScreen";
+
 import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Routes>
+      <Route path={'/register'} element={<RegisterScreen/>}/>
+      <Route path={'/login'} element={<LoginScreen/>}/>
+      <Route path={'/user'} element={<UserScreen/>}/>
+      <Route path={'/'} element={<AllBlogsScreen/>} exact/>
+      <Route path={'/add'} element={<AddBlogScreen/>}/>
+      <Route path={'/:id'} element={<SelectedBlogScreen/>}/>
+      <Route path={'/update/:id'} element={<AddBlogScreen/>}/>
+      <Route path={'*'} element={<RegisterScreen/>}/>
+    </Routes>
   );
 }
 

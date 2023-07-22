@@ -1,0 +1,36 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 500;
+    width: 100%;
+    background: blueviolet;
+    padding: 15px;
+    font-size: 20px;
+    position: -webkit-sticky;
+}
+
+.header-items {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    font-family: "Comic Sans MS", serif;
+    display: inline-table !important;
+}
+
+.add-blog-button {
+    background: lightgrey;
+}
+
+.add-blog-button:hover {
+    color: lightgrey;
+}
+
+Link {
+    text-decoration: none !important;
+}
+
+h1 {
+
+}
