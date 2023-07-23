@@ -12,12 +12,20 @@ const AllBlogsScreen = () => {
     const navigate = useNavigate();
 
     const fetchBlogs = async (token) => {
-        const response = await axios.get('http://localhost:5000/api/blog',{
-            headers: {
-                'x-auth-token': token
-            },
-        });
-        setBlogs(response.data);
+        try{
+            const response = await axios.get('http://localhost:5000/api/blog',{
+                headers: {
+                    'x-auth-token': token
+                },
+            });
+            setBlogs(response.data);
+        }catch (err){
+            console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
+        }
     }
 
     useEffect(() => {

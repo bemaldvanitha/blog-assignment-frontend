@@ -37,14 +37,22 @@ const AddBlogScreen = () => {
     },[id]);
 
     const fetchCurrentData = async (token) => {
-        const response = await axios.get(`http://localhost:5000/api/blog/${id}`,{
-            headers: {
-                'x-auth-token': token
-            },
-        });
-        const blog = response.data;
-        setBlogHeader(blog.blogHeader);
-        setBlogBody(blog.blogBody);
+        try{
+            const response = await axios.get(`http://localhost:5000/api/blog/${id}`,{
+                headers: {
+                    'x-auth-token': token
+                },
+            });
+            const blog = response.data;
+            setBlogHeader(blog.blogHeader);
+            setBlogBody(blog.blogBody);
+        }catch (err){
+            console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
+        }
     }
 
     const handleBlogHeader = (e) => {

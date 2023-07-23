@@ -13,12 +13,20 @@ const UserScreen = () => {
     const navigate = useNavigate();
 
     const fetchUser = async (token) => {
-        const response = await axios.get(`http://localhost:5000/api/user`,{
-            headers: {
-                'x-auth-token': token
-            },
-        });
-        setUser(response.data);
+        try{
+            const response = await axios.get(`http://localhost:5000/api/user`,{
+                headers: {
+                    'x-auth-token': token
+                },
+            });
+            setUser(response.data);
+        }catch (err){
+            console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
+        }
     }
 
     useEffect(() => {

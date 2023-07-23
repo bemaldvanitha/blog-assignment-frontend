@@ -18,21 +18,37 @@ const SelectedBlogScreen = () => {
     },[user, blog]);
 
     const fetchUser = async (token) => {
-        const response = await axios.get(`http://localhost:5000/api/user`,{
-            headers: {
-                'x-auth-token': token
-            },
-        });
-        setUser(response.data);
+        try{
+            const response = await axios.get(`http://localhost:5000/api/user`,{
+                headers: {
+                    'x-auth-token': token
+                },
+            });
+            setUser(response.data);
+        }catch (err){
+            console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
+        }
     }
 
     const fetchSelectedBlogs = async (token) => {
-        const response = await axios.get(`http://localhost:5000/api/blog/${id}`,{
-            headers: {
-                'x-auth-token': token
-            },
-        });
-        setBlog(response.data);
+        try{
+            const response = await axios.get(`http://localhost:5000/api/blog/${id}`,{
+                headers: {
+                    'x-auth-token': token
+                },
+            });
+            setBlog(response.data);
+        }catch (err){
+            console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
+        }
     }
 
     useEffect(() => {
@@ -64,6 +80,10 @@ const SelectedBlogScreen = () => {
             navigate('/');
         }catch (err){
             console.error(err);
+            if(err.response.status === 401){
+                localStorage.removeItem('jwtToken');
+                navigate('/register')
+            }
         }
     }
 
