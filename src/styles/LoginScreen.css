@@ -47,3 +47,22 @@
 .login-page-register-link a:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .login-page-container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    .login-page-title {
+        font-size: 20px;
+    }
+
+    .login-page-button-container {
+        flex-direction: column;
+    }
+
+    .login-page-button {
+        width: 100%;
+    }
+}

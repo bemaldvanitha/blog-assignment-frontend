@@ -20,17 +20,36 @@
 }
 
 .add-blog-button {
-    background: lightgrey;
-}
-
-.add-blog-button:hover {
-    color: lightgrey;
+    display: flex;
+    align-items: center;
+    background-color: #e6e6fa;
+    color: black;
+    padding: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
 }
 
 Link {
     text-decoration: none !important;
 }
 
-h1 {
+@media (max-width: 768px) {
+    .header {
+        font-size: 16px;
+    }
 
+    .header-items {
+        justify-content: center;
+    }
+
+    .title {
+        display: block !important;
+        text-align: center;
+    }
+
+    .add-blog-button {
+        padding: 10px;
+    }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Upload, Button } from 'antd';
+import { Upload, Button, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useNavigate, Link } from "react-router-dom";
 
@@ -41,15 +41,12 @@ const RegisterScreen = () => {
     const beforeUpload = (file) => {
         const isImage = file.type.startsWith('image/');
         const isLessThan2MB = file.size / 1024 / 1024 < 2;
-
         if (!isImage) {
-            //message.error('You can only upload image files!');
+            message.error('You can only upload image files!');
         }
-
         if (!isLessThan2MB) {
-            //message.error('Image must be smaller than 2MB!');
+            message.error('Image must be smaller than 2MB!');
         }
-
         return isImage && isLessThan2MB;
     };
 

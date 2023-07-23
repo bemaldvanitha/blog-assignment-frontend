@@ -14,7 +14,7 @@ const CustomInput = ({ title, id, inputValue, setValue, isPassword = false, isTe
                 onChange={setValue}
                 className="cus-input"
                 placeholder={`Enter your ${title}`}
-                autoSize={{ minRows: 2, maxRows: 6 }} // Set the minRows and maxRows values as per your design requirements
+                autoSize={{ minRows: 2, maxRows: 6 }}
             />
         )
     }

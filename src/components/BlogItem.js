@@ -13,7 +13,6 @@ const BlogItem = ({ title, body, date, id, writtenBy }) => {
     return(
         <Card
             onClick={navigateToPost}
-            title={ title }
             bordered={false}
             style={{
                 width: 600,
@@ -22,9 +21,10 @@ const BlogItem = ({ title, body, date, id, writtenBy }) => {
                 marginTop: 20,
             }}
         >
+            <h2 style={{ fontSize: '24px' }}>{title}</h2>
             <p>{ body }</p>
             <p>{ moment(date).format('MMMM D, YYYY') }</p>
-            <p>{ writtenBy }</p>
+            <p>written by - { writtenBy }</p>
         </Card>
 
     )

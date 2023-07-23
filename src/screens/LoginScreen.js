@@ -65,7 +65,6 @@ const LoginScreen = () => {
                     <Button type="primary" onClick={handleLogin} className="login-page-button">
                         Login
                     </Button>
-
                     <Link to="/register" className="login-page-register-link">
                         Register
                     </Link>

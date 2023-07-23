@@ -7,3 +7,15 @@
     padding: 0;
     display: inline-block;
 }
+
+@media (max-width: 768px) {
+    .blog-box {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .blog-list {
+        display: block;
+        margin: 10px auto;
+    }
+}

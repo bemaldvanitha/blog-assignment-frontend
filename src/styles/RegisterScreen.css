@@ -36,3 +36,20 @@
 .register-form-login-link-text:hover {
     text-decoration: underline;
 }
+
+@media (max-width: 768px) {
+    .register-form-container {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .register-form-header {
+        font-size: 20px;
+    }
+
+    .register-form-button {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}

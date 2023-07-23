@@ -16,7 +16,7 @@
 }
 
 .blog-title {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
     color: #333;
 }
@@ -53,4 +53,36 @@
 
 .blog-delete-btn {
     background-color: #ff0000;
+}
+
+@media (max-width: 768px) {
+    .blog-container {
+        flex-direction: column;
+    }
+
+    .blog {
+        width: 90%;
+        max-width: none;
+    }
+
+    .blog-title {
+        font-size: 24px;
+    }
+
+    .blog-info {
+        font-size: 12px;
+    }
+
+    .blog-description {
+        font-size: 14px;
+    }
+
+    .blog-actions {
+        margin-top: 15px;
+    }
+
+    .blog-actions button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
 }
